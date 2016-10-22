@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h="http://java.sun.com/jsf/html">
+	<f:view contentType="text/html">
+	    <h:body>
+	        <h:form>
+	            <h:dataTable id="tabla" value="#{tramManagedBeans.llistatTrams}" var="tram">
+	                <h:column>
+	                    #{tram.idTram}
+	                </h:column>
+	                <h:column>
+	                    #{tram.nomTram}
+	                </h:column>
+	                <h:column>
+	                    #{tram.carrer.nombre}
+	                </h:column>
+	            </h:dataTable>
+	        </h:form>
+	        <h:link value="Tornar" outcome="index"/>
+	    </h:body>
+	</f:view>
+</html>

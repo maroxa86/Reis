@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui">
+	<f:view contentType="text/html">
+		<h:head>
+		</h:head>
+	    <h:body>
+	        <h:form>
+			<p>
+				<label for="nom">Nom i Cognoms:</label> 
+				<h:inputText id="nom" value="#{paquetManagedBeans.nom}" />
+			</p>
+	        <p>
+				<label for="telefon">Telefon:</label> 
+				<h:inputText id="telefon" value="#{paquetManagedBeans.telefon}" />
+			</p>
+				<p:outputLabel for="carrer" value="Carrer: "/> 
+				<p:selectOneMenu id="carrer" value="#{paquetManagedBeans.carrer}">
+					<f:selectItem itemLabel="Seleccioni Carrer" itemValue="" noSelectionOption="true" />
+					<f:selectItems value ="#{paquetManagedBeans.llistatCarrersCombo}" />
+				</p:selectOneMenu>
+			<p>
+				<label for="portal">Nº Portal:</label> 
+				<h:inputText id="portal" value="#{paquetManagedBeans.portal}" />
+			</p>
+			<p>
+				<label for="observacions">Observacions:</label> 
+				<h:inputText id="observacions" value="#{paquetManagedBeans.observacions}" />
+			</p>
+			<p>
+				<label for="idTamanyPreu">Tamany Paquet:</label> 
+				<p:selectOneMenu id="idTamanyPreu" value="#{paquetManagedBeans.idTamanyPreu}">
+					<f:selectItem itemLabel="Seleccioni Paquet" itemValue="" noSelectionOption="true" />
+					<f:selectItems value ="#{paquetManagedBeans.llistatPreuCombo}" />
+				</p:selectOneMenu>
+			</p>
+			<h:commandButton id="submit" actionListener="#{paquetManagedBeans.insertar}" action="paquets" value="Guardar" />
+		</h:form>
+	    </h:body>
+	</f:view>
+</html>
