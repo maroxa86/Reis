@@ -4,6 +4,8 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>reis.beans.Carrer</class>
 		<class>reis.beans.Tram</class>
+		<class>reis.beans.Preu</class>
+		<class>reis.beans.Paquet</class>
 		<properties>
 			<property name="hibernate.show_sql" value="false" />
 			<property name="javax.persistence.transactionType" value="RESOURCE_LOCAL" />
