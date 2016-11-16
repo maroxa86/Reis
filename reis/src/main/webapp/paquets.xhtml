@@ -10,11 +10,11 @@
 	        <h:form>
 			<p>
 				<label for="nom">Nom i Cognoms:</label> 
-				<h:inputText id="nom" value="#{paquetManagedBeans.nom}" />
+				<p:inputText id="nom" value="#{paquetManagedBeans.nom}" autocomplete="off"/>
 			</p>
 	        <p>
 				<label for="telefon">Telefon:</label> 
-				<h:inputText id="telefon" value="#{paquetManagedBeans.telefon}" />
+				<p:inputMask id="telefon" value="#{paquetManagedBeans.telefon}" autocomplete="off" mask="999999999"/>
 			</p>
 				<p:outputLabel for="carrer" value="Carrer: "/> 
 				<p:selectOneMenu id="carrer" value="#{paquetManagedBeans.carrer}">
@@ -23,11 +23,11 @@
 				</p:selectOneMenu>
 			<p>
 				<label for="portal">Nº Portal:</label> 
-				<h:inputText id="portal" value="#{paquetManagedBeans.portal}" />
+				<p:inputMask id="portal" value="#{paquetManagedBeans.portal}" autocomplete="off" mask="9?99"/>
 			</p>
 			<p>
 				<label for="observacions">Observacions:</label> 
-				<h:inputText id="observacions" value="#{paquetManagedBeans.observacions}" />
+				<p:inputText id="observacions" value="#{paquetManagedBeans.observacions}" autocomplete="off"/>
 			</p>
 			<p>
 				<label for="idTamanyPreu">Tamany Paquet:</label> 
@@ -36,7 +36,10 @@
 					<f:selectItems value ="#{paquetManagedBeans.llistatPreuCombo}" />
 				</p:selectOneMenu>
 			</p>
-			<h:commandButton id="submit" actionListener="#{paquetManagedBeans.insertar}" action="paquets" value="Guardar" />
+			<p:commandButton id="submit" actionListener="#{paquetManagedBeans.insertar}" 
+							action="paquets" value="Guardar" validateClient="true" ajax="false" />
+			<br/>
+			<h:link value="Tornar" outcome="index"/>
 		</h:form>
 	    </h:body>
 	</f:view>

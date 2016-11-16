@@ -79,24 +79,32 @@ public class PaquetManagedBean implements Serializable{
 	}
 
 	public void insertar(){
-		Paquet paquet = new Paquet();
-		paquet.setNom(nom);
-		paquet.setObservacions(observacions);
-		paquet.setPortal(Integer.parseInt(portal));
-		paquet.setTelefon(Integer.parseInt(telefon));
-		paquet.setPreu(new Preu(Integer.parseInt(idTamanyPreu)));
-		
-		int idTram = tramBO.getTramByCarrerAndPortal(Integer.parseInt(carrer), Integer.parseInt(portal));
-		
-		paquet.setTram(new Tram(idTram));
-		
-		paquetBO.insertar(paquet);
-		
-		String missatge = "El tram del paquet es: " + paquet.getTram().getIdTram() + "\n El numero de paquet es el: " + paquet.getIdPaquet();
-		
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Paquet Guardat", missatge);
-        
-        RequestContext.getCurrentInstance().showMessageInDialog(message);
+		if(carrer != null && idTamanyPreu != null){
+			Paquet paquet = new Paquet();
+			paquet.setNom(nom);
+			paquet.setObservacions(observacions);
+			paquet.setPortal(Integer.parseInt(portal));
+			paquet.setTelefon(Integer.parseInt(telefon));
+			Preu preu = preuBO.getPreuById(Integer.parseInt(idTamanyPreu));
+			paquet.setPreu(preu);
+			
+			int idTram = tramBO.getTramByCarrerAndPortal(Integer.parseInt(carrer), Integer.parseInt(portal));
+			
+			paquet.setTram(new Tram(idTram));
+			
+			paquetBO.insertar(paquet);
+			
+			String missatge = "El tram del paquet es: " + paquet.getTram().getIdTram() + "<br/>El numero de paquet es el: " + paquet.getIdPaquet() + "<br/>El preu del paquet es: " + paquet.getPreu().getPreu() +" euros";
+			
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Paquet Guardat", missatge);
+	        
+	        RequestContext.getCurrentInstance().showMessageInDialog(message);
+		}
+		else{
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR FALTA INFORMACIÓ",
+					"NO S'HA INDICAT EL CARRER O EL TAMANY DEL PAQUET");
+			RequestContext.getCurrentInstance().showMessageInDialog(message); 
+		}
 	}
 	
 	public String getNom() {

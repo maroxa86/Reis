@@ -7,4 +7,6 @@ import reis.beans.Preu;
 public interface PreuBO {
 
 	List<Preu> carregarPreus();
+
+	Preu getPreuById(int idPreu);
 }

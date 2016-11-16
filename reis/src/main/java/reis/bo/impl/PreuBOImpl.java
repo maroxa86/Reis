@@ -28,4 +28,9 @@ public class PreuBOImpl implements PreuBO {
 		this.preuDAO = preuDAO;
 	}
 
+	@Override
+	public Preu getPreuById(int idPreu) {
+		return preuDAO.buscarPorClave(idPreu);
+	}
+
 }

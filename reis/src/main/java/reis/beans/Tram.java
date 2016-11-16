@@ -23,6 +23,7 @@ public class Tram implements Serializable{
 	private Integer sMin;
 	private Integer pMin;
 	private Integer pMax;
+	private Integer sentit;
 	
 	@ManyToOne
 	@JoinColumn(name="idCarrer")
@@ -38,7 +39,7 @@ public class Tram implements Serializable{
 	}
 	
 	
-	public Tram(Integer idTram, String nomTram, Integer sMax, Integer sMin, Integer pMin, Integer pMax, Carrer carrer) {
+	public Tram(Integer idTram, String nomTram, Integer sMax, Integer sMin, Integer pMin, Integer pMax, Integer sentit, Carrer carrer) {
 		super();
 		this.idTram = idTram;
 		this.nomTram = nomTram;
@@ -46,6 +47,7 @@ public class Tram implements Serializable{
 		this.sMin = sMin;
 		this.pMin = pMin;
 		this.pMax = pMax;
+		this.sentit = sentit;
 		this.carrer = carrer;
 	}
 
@@ -105,6 +107,14 @@ public class Tram implements Serializable{
 
 	public void setpMax(Integer pMax) {
 		this.pMax = pMax;
+	}
+
+	public Integer getSentit() {
+		return sentit;
+	}
+
+	public void setSentit(Integer sentit) {
+		this.sentit = sentit;
 	}
 
 }

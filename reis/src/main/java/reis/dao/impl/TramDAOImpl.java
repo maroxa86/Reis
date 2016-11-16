@@ -26,8 +26,8 @@ public class TramDAOImpl extends AbstractGenericDAOImpl<Tram, Integer> implement
 		}
 		else{
 			criteria.where(builder.and(
-					builder.le(tramRoot.get("pMin"), portal),
-					builder.ge(tramRoot.get("pMax"), portal),
+					builder.le(tramRoot.get("sMin"), portal),
+					builder.ge(tramRoot.get("sMax"), portal),
 					builder.equal(tramRoot.get("carrer"), idCarrer)));
 		}
 		

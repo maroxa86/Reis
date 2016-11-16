@@ -1,5 +1,7 @@
 package reis.bo.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,11 @@ public class PaquetBOImpl implements PaquetBO {
 	@Autowired
 	public void setPaquetDAO(PaquetDAO paquetDAO) {
 		this.paquetDAO = paquetDAO;
+	}
+
+	@Override
+	public List<Paquet> carregarPaquets() {
+		return paquetDAO.buscarTodos();
 	}
 
 }
