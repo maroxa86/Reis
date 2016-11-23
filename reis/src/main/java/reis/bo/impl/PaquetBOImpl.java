@@ -35,4 +35,9 @@ public class PaquetBOImpl implements PaquetBO {
 		return paquetDAO.buscarTodos();
 	}
 
+	@Override
+	public List<Paquet> getLlistatPaquetsFinal() {
+		return paquetDAO.llistatFinal();
+	}
+
 }

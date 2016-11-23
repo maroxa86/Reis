@@ -11,23 +11,17 @@
 			<p>
 				<label for="nom">Nom i Cognoms:</label> 
 				<p:inputText id="nom" value="#{paquetManagedBeans.nom}" autocomplete="off"/>
-			</p>
-	        <p>
 				<label for="telefon">Telefon:</label> 
 				<p:inputMask id="telefon" value="#{paquetManagedBeans.telefon}" autocomplete="off" mask="999999999"/>
 			</p>
-				<p:outputLabel for="carrer" value="Carrer: "/> 
+			<p>
+				<label for="carrer">Carrer:</label> 
 				<p:selectOneMenu id="carrer" value="#{paquetManagedBeans.carrer}">
 					<f:selectItem itemLabel="Seleccioni Carrer" itemValue="" noSelectionOption="true" />
 					<f:selectItems value ="#{paquetManagedBeans.llistatCarrersCombo}" />
 				</p:selectOneMenu>
-			<p>
 				<label for="portal">Nº Portal:</label> 
 				<p:inputMask id="portal" value="#{paquetManagedBeans.portal}" autocomplete="off" mask="9?99"/>
-			</p>
-			<p>
-				<label for="observacions">Observacions:</label> 
-				<p:inputText id="observacions" value="#{paquetManagedBeans.observacions}" autocomplete="off"/>
 			</p>
 			<p>
 				<label for="idTamanyPreu">Tamany Paquet:</label> 
@@ -35,6 +29,10 @@
 					<f:selectItem itemLabel="Seleccioni Paquet" itemValue="" noSelectionOption="true" />
 					<f:selectItems value ="#{paquetManagedBeans.llistatPreuCombo}" />
 				</p:selectOneMenu>
+			</p>
+			<p>
+				<label for="observacions">Observacions:</label> 
+				<p:inputText id="observacions" value="#{paquetManagedBeans.observacions}" autocomplete="off"/>
 			</p>
 			<p:commandButton id="submit" actionListener="#{paquetManagedBeans.insertar}" 
 							action="paquets" value="Guardar" validateClient="true" ajax="false" />

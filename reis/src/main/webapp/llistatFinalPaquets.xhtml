@@ -11,7 +11,7 @@
 		<h:form id="form">
 			<p:growl id="msgs" showDetail="true" />
 			
-			<p:dataTable id="tabla" value="#{llistatPaquetsManagedBeans.llistatPaquets}" var="paquet"
+			<p:dataTable id="tabla" value="#{llistatFinalPaquetsManagedBeans.llistatPaquets}" var="paquet"
 				paginator="true" paginatorPosition="bottom" rows="10"  
 		    		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}">
 		    	<f:facet name="header">
@@ -35,32 +35,32 @@
 				
 				<p:column style="width:32px;text-align: center">
 	            	<p:commandButton update=":form:paquetDetall" oncomplete="PF('paquetDialog').show()" icon="ui-icon-search" title="View">
-	               		<f:setPropertyActionListener value="#{paquet}" target="#{llistatPaquetsManagedBeans.paquetSeleccionat}" />
+	               		<f:setPropertyActionListener value="#{paquet}" target="#{llistatFinalPaquetsManagedBeans.paquetSeleccionat}" />
 	            	</p:commandButton>
 	        	</p:column>
 			</p:dataTable>
 			
 			<p:dialog header="Paquet Info" widgetVar="paquetDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
 		        <p:outputPanel id="paquetDetall" style="text-align:center;">
-		            <p:panelGrid  columns="2" rendered="#{not empty llistatPaquetsManagedBeans.paquetSeleccionat}" columnClasses="label,value">
+		            <p:panelGrid  columns="2" rendered="#{not empty llistatFinalPaquetsManagedBeans.paquetSeleccionat}" columnClasses="label,value">
 		 				
 		                <h:outputText value="Identificador:" />
-		                <h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.idPaquet}" />
+		                <h:outputText value="#{llistatFinalPaquetsManagedBeans.paquetSeleccionat.idPaquet}" />
 						
 						<h:outputText value="Id Tram: "/>
-						<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.tram.idTram}"/>
+						<h:outputText value="#{llistatFinalPaquetsManagedBeans.paquetSeleccionat.tram.idTram}"/>
 						
 		    			<h:outputText value="Nom: "/>
-		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.nom}"/>
+		    			<h:outputText value="#{llistatFinalPaquetsManagedBeans.paquetSeleccionat.nom}"/>
 
 						<h:outputText value="Carrer: "/>
-		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.tram.carrer.nombre}"/>
+		    			<h:outputText value="#{llistatFinalPaquetsManagedBeans.paquetSeleccionat.tram.carrer.nombre}"/>
 						
 						<h:outputText value="Portal: "/>
-		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.portal}" />		    			
+		    			<h:outputText value="#{llistatFinalPaquetsManagedBeans.paquetSeleccionat.portal}" />		    			
 
 						<h:outputText value="Tram: "/>
-		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.tram.nomTram}"/>
+		    			<h:outputText value="#{llistatFinalPaquetsManagedBeans.paquetSeleccionat.tram.nomTram}"/>
 		    					    			
 		            </p:panelGrid>
 		        </p:outputPanel>

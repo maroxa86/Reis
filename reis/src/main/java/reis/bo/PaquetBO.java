@@ -9,5 +9,7 @@ public interface PaquetBO {
 	void insertar(Paquet paquet);
 
 	List<Paquet> carregarPaquets();
+	
+	List<Paquet> getLlistatPaquetsFinal();
 
 }
