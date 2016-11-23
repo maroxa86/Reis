@@ -3,7 +3,6 @@ package reis.bo.impl;
 import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

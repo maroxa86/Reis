@@ -79,4 +79,39 @@
 		<h:link value="Tornar" outcome="index" />
 		
 	</h:body>
+=======
+       xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui">
+	<f:view contentType="text/html">
+	    <h:body>
+	    	<p:dataTable id="tabla" value="#{llistatPaquetsManagedBeans.llistatPaquets}" var="paquet">
+	    		<p:column headerText="Identificador">
+	    			<h:outputText value="#{paquet.idPaquet}" />
+	    		</p:column>
+	    		<p:column headerText="Portal">
+	    			<h:outputText value="#{paquet.portal}" />
+	    		</p:column>
+	    		<p:column headerText="carrer">
+	    			<h:outputText value="#{paquet.tram.carrer.nombre}" />
+	    		</p:column>
+	    		<p:column headerText="tram">
+	    			<h:outputText value="#{paquet.tram.nomTram}" />
+	    		</p:column>
+	    		<p:column headerText="nom">
+	    			<h:outputText value="#{paquet.nom}" />
+	    		</p:column>
+	    		<p:column headerText="observacions">
+	    			<h:outputText value="#{paquet.observacions}" />
+	    		</p:column>
+	    		<p:column headerText="telefon">
+	    			<h:outputText value="#{paquet.telefon}" />
+	    		</p:column>
+	    		<p:column headerText="tamanyPaquet">
+	    			<h:outputText value="#{paquet.preu.tamanyPaquet}" />
+	    		</p:column>
+	    	</p:dataTable>
+	        <h:link value="Tornar" outcome="index"/>
+	    </h:body>
+	</f:view>
 </html>
