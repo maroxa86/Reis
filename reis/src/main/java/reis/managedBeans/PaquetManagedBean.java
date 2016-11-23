@@ -40,6 +40,7 @@ public class PaquetManagedBean implements Serializable{
 	private List<SelectItem> llistatPreuCombo;
 	
 	
+	
 	@ManagedProperty("#{paquetBO}")
 	private PaquetBO paquetBO;
 	

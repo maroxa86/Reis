@@ -1,23 +1,43 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
        xmlns:f="http://java.sun.com/jsf/core"
-       xmlns:h="http://java.sun.com/jsf/html">
-	<f:view contentType="text/html">
-	    <h:body>
-	        <h:form>
-	            <h:dataTable id="tabla" value="#{tramManagedBeans.llistatTrams}" var="tram">
-	                <h:column>
-	                    #{tram.idTram}
-	                </h:column>
-	                <h:column>
-	                    #{tram.nomTram}
-	                </h:column>
-	                <h:column>
-	                    #{tram.carrer.nombre}
-	                </h:column>
-	            </h:dataTable>
-	        </h:form>
-	        <h:link value="Tornar" outcome="index"/>
-	    </h:body>
-	</f:view>
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</h:head>
+    <h:body>
+        <h:form>
+            <p:dataTable id="tablaTrams" value="#{tramManagedBeans.llistatTrams}" var="tram"
+            	paginator="true" paginatorPosition="bottom" rows="10"  
+	    		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}">
+	    		<f:facet name="header">
+	    			Llistat De Trams
+	    		</f:facet>
+                <p:column>
+                	<f:facet name="Identificador">
+	    				Identificador
+	      			</f:facet>
+                    #{tram.idTram}
+                </p:column>
+                <p:column>
+                	<f:facet name="Nom">
+	    				Nom
+	      			</f:facet>
+                    #{tram.nomTram}
+                </p:column>
+                <p:column>
+                	<f:facet name="NomCarrer">
+	    				Nom Carrer
+	      			</f:facet>
+                    #{tram.carrer.nombre}
+                </p:column>
+                <f:facet name="footer">
+	    			Total Trams: #{fn:length(tramManagedBeans.llistatTrams)}
+	    		</f:facet>
+            </p:dataTable>
+        </h:form>
+        <h:link value="Tornar" outcome="index"/>
+    </h:body>
 </html>

@@ -2,18 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
        xmlns:f="http://java.sun.com/jsf/core"
        xmlns:h="http://java.sun.com/jsf/html"
-       xmlns:p="http://primefaces.org/ui">
-	<f:view contentType="text/html">
-	    <h:body>
-	    	<p:dataTable id="tabla" value="#{carrersManagedBeans.llistatCarrers}" var="carrer">
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</h:head>
+    <h:body>
+    	<h:form>
+	    	<p:dataTable id="tablaCarrers" name="tablaCarrers" value="#{carrersManagedBeans.llistatCarrers}" var="carrer"
+	    		paginator="true" paginatorPosition="bottom" rows="10"  
+	    		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}">
+	    		<f:facet name="header">
+	    			Llistat De Carrers
+	    		</f:facet>
 	    		<p:column headerText="Identificador">
-	    			<h:outputText value="#{carrer.idCarrer}" />
+	    			<h:outputText value="#{carrer.idCarrer}"/>
 	    		</p:column>
 	    		<p:column headerText="Nom">
-	    			<h:outputText value="#{carrer.nombre}" />
+	    			<h:outputText value="#{carrer.nombre}"/>
 	    		</p:column>
+	    		<f:facet name="footer">
+	    			Total Carrers: #{fn:length(carrersManagedBeans.llistatCarrers)}
+	    		</f:facet>
 	    	</p:dataTable>
-	        <h:link value="Tornar" outcome="index"/>
-	    </h:body>
-	</f:view>
+    	</h:form>
+        <h:link value="Tornar" outcome="index"/>
+   	</h:body>
 </html>

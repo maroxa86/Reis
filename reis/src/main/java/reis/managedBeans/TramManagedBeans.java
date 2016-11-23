@@ -5,13 +5,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import reis.beans.Tram;
 import reis.bo.TramBO;
 
 @ManagedBean(name="tramManagedBeans")
-@RequestScoped
+@ViewScoped
 public class TramManagedBeans {
 
 	private List<Tram> llistatTrams;

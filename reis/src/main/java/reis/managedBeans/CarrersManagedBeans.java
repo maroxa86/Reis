@@ -6,14 +6,14 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 import reis.beans.Carrer;
 import reis.bo.CarrersBO;
 
 @ManagedBean(name="carrersManagedBeans")
-@RequestScoped
+@ViewScoped
 public class CarrersManagedBeans {
 	
 	private String idCarrers;
@@ -81,6 +81,5 @@ public class CarrersManagedBeans {
 	public void setLlistatCarrersCombo(List<SelectItem> llistatCarrersCombo) {
 		this.llistatCarrersCombo = llistatCarrersCombo;
 	}
-	
-	
+
 }

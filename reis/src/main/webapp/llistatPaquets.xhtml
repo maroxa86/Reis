@@ -2,47 +2,81 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
-<f:view contentType="text/html">
+	xmlns:p="http://primefaces.org/ui"     
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</h:head>
 	<h:body>
-		<p:dataTable id="tabla"
-			value="#{llistatPaquetsManagedBeans.llistatPaquets}" var="paquet">
-			<p:column headerText="Identificador">
-				<h:outputText value="#{paquet.idPaquet}" />
-			</p:column>
-			<p:column headerText="Portal">
-				<h:outputText value="#{paquet.portal}" />
-			</p:column>
-			<p:column headerText="carrer">
-				<h:outputText value="#{paquet.tram.carrer.nombre}" />
-			</p:column>
-			<p:column headerText="idTram">
-				<h:outputText value="#{paquet.tram.idTram}" />
-			</p:column>
-			<p:column headerText="tram">
-				<h:outputText value="#{paquet.tram.nomTram}" />
-			</p:column>
-			<p:column headerText="nom">
-				<h:outputText value="#{paquet.nom}" />
-			</p:column>
-			<p:column headerText="observacions">
-				<h:outputText value="#{paquet.observacions}" />
-			</p:column>
-			<p:column headerText="telefon">
-				<h:outputText value="#{paquet.telefon}" />
-			</p:column>
-			<p:column headerText="tamanyPaquet">
-				<h:outputText value="#{paquet.preu.tamanyPaquet}" />
-			</p:column>
-			<p:column headerText="sentit">
-				<h:outputText value="#{paquet.tram.sentit}" />
-			</p:column>
-		</p:dataTable>
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" />
+			
+			<p:dataTable id="tabla" value="#{llistatPaquetsManagedBeans.llistatPaquets}" var="paquet"
+				paginator="true" paginatorPosition="bottom" rows="10"  
+		    		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {CurrentPageReport}">
+		    	<f:facet name="header">
+		    		Llistat Paquets
+	    		</f:facet>
+				<p:column headerText="Id Paquet">
+	    			<h:outputText value="#{paquet.idPaquet}" />
+				</p:column>
+				
+				<p:column headerText="Id Tram">
+	    			<h:outputText value="#{paquet.tram.idTram}" />
+				</p:column>
+				
+				<p:column headerText="Sentit">
+	    			<h:outputText value="#{paquet.tram.sentit}" />
+				</p:column>
+				
+				<p:column headerText="Validat">
+	    			<h:outputText value="Pendent de validar" />
+				</p:column>
+				
+				<p:column style="width:32px;text-align: center">
+	            	<p:commandButton update=":form:paquetDetall" oncomplete="PF('paquetDialog').show()" icon="ui-icon-search" title="View">
+	               		<f:setPropertyActionListener value="#{paquet}" target="#{llistatPaquetsManagedBeans.paquetSeleccionat}" />
+	            	</p:commandButton>
+	        	</p:column>
+			</p:dataTable>
+			<p:dialog header="Paquet Info" widgetVar="paquetDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+		        <p:outputPanel id="paquetDetall" style="text-align:center;">
+		            <p:panelGrid  columns="2" rendered="#{not empty llistatPaquetsManagedBeans.paquetSeleccionat}" columnClasses="label,value">
+		 				
+		                <h:outputText value="Identificador:" />
+		                <h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.idPaquet}" />
+						
+						<h:outputText value="Carrer: "/>
+		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.tram.carrer.nombre}"/>
+						
+						<h:outputText value="Tram: "/>
+		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.tram.nomTram}"/>
+						
+						<h:outputText value="Portal: "/>
+		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.portal}" />
+		    			
+		    			
+		    			<h:outputText value="Nom: "/>
+		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.nom}"/>
+		    			
+		    			<h:outputText value="Telefon: "/>
+		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.telefon}"/>
+		    			
+		    			<h:outputText value="Observacions: "/>
+		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.observacions}"/>
+		    			
+		    			<h:outputText value="Paquet: "/>
+		    			<h:outputText value="#{llistatPaquetsManagedBeans.paquetSeleccionat.preu.tamanyPaquet}"/>
+		 				
+		            </p:panelGrid>
+		        </p:outputPanel>
+		    </p:dialog>
+		    <h:commandLink>
+				<p:graphicImage name="/demo/images/csv.png" />
+				<p:dataExporter type="xls" target="form" fileName="paquets" pageOnly="true" />
+			</h:commandLink>
+	    </h:form>
 		<h:link value="Tornar" outcome="index" />
-		<h:commandLink>
-			<p:graphicImage name="/demo/images/csv.png" />
-			<p:dataExporter type="csv" target="tbl" fileName="cars" pageOnly="true" />
-		</h:commandLink>
+		
 	</h:body>
-</f:view>
 </html>
