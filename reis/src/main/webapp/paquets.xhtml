@@ -8,37 +8,53 @@
 		</h:head>
 	    <h:body>
 	        <h:form>
-			<p>
-				<label for="nom">Nom i Cognoms:</label> 
-				<p:inputText id="nom" value="#{paquetManagedBeans.nom}" autocomplete="off"/>
-				<label for="telefon">Telefon:</label> 
-				<p:inputMask id="telefon" value="#{paquetManagedBeans.telefon}" autocomplete="off" mask="999999999"/>
-			</p>
-			<p>
-				<label for="carrer">Carrer:</label> 
-				<p:selectOneMenu id="carrer" value="#{paquetManagedBeans.carrer}">
-					<f:selectItem itemLabel="Seleccioni Carrer" itemValue="" noSelectionOption="true" />
-					<f:selectItems value ="#{paquetManagedBeans.llistatCarrersCombo}" />
-				</p:selectOneMenu>
-				<label for="portal">Nº Portal:</label> 
-				<p:inputMask id="portal" value="#{paquetManagedBeans.portal}" autocomplete="off" mask="9?99"/>
-			</p>
-			<p>
-				<label for="idTamanyPreu">Tamany Paquet:</label> 
-				<p:selectOneMenu id="idTamanyPreu" value="#{paquetManagedBeans.idTamanyPreu}">
-					<f:selectItem itemLabel="Seleccioni Paquet" itemValue="" noSelectionOption="true" />
-					<f:selectItems value ="#{paquetManagedBeans.llistatPreuCombo}" />
-				</p:selectOneMenu>
-			</p>
-			<p>
-				<label for="observacions">Observacions:</label> 
-				<p:inputText id="observacions" value="#{paquetManagedBeans.observacions}" autocomplete="off"/>
-			</p>
-			<p:commandButton id="submit" actionListener="#{paquetManagedBeans.insertar}" 
-							action="paquets" value="Guardar" validateClient="true" ajax="false" />
-			<br/>
-			<h:link value="Tornar" outcome="index"/>
-		</h:form>
+		        <p:panel header="Validate">
+		        	
+		        	<h:panelGrid id="grid" columns="3" cellpadding="5">
+		        	
+		        		<h:outputLabel for="nom" value="Nom i Cognoms:"/>
+						<p:inputText id="nom" value="#{paquetManagedBeans.nom}" autocomplete="off" required="true" label="nom"
+							requiredMessage="S'ha d'indicar el nom i cognoms"/>
+						<p:message for="nom" id="nomMessage"/>
+						
+						<h:outputLabel for="telefon" value="Telefon:" /> 
+						<p:inputMask id="telefon" value="#{paquetManagedBeans.telefon}" autocomplete="off" mask="999999999" required="true"
+							requiredMessage="S'ha d'indicar un numero de telefon"/>
+						<p:message for="telefon" id="telefonMessage"/>
+					
+						<h:outputLabel for="carrer" value="Carrer:" />
+						<p:selectOneMenu id="carrer" value="#{paquetManagedBeans.carrer}" required="true" requiredMessage="S'ha d'escollir un carrer">
+							<f:selectItem itemLabel="Seleccioni Carrer" itemValue="" noSelectionOption="true" />
+							<f:selectItems value ="#{paquetManagedBeans.llistatCarrersCombo}" />
+						</p:selectOneMenu>
+						<p:message for="carrer" id="carrerMessage"/>
+
+						<h:outputLabel for="portal" value="Nº Portal:" />
+						<p:inputMask id="portal" value="#{paquetManagedBeans.portal}" autocomplete="off" mask="9?99" required="true"
+							requiredMessage="S'ha d'indicar el número de portal"/>
+						<p:message for="portal" id="portalMessage"/>
+						
+						<h:outputLabel for="idTamanyPreu" value="Tamany Paquet:" /> 
+						<p:selectOneMenu id="idTamanyPreu" value="#{paquetManagedBeans.idTamanyPreu}" required="true" 
+							requiredMessage="S'ha d'indicar un tamay de paquet">
+							<f:selectItem itemLabel="Seleccioni Paquet" itemValue="" noSelectionOption="true" />
+							<f:selectItems value ="#{paquetManagedBeans.llistatPreuCombo}" />
+						</p:selectOneMenu>
+						<p:message for="idTamanyPreu" id="isTamanyPreuMessage"/>
+
+						<h:outputLabel for="observacions" value="Observacions:" />
+						<p:inputText id="observacions" value="#{paquetManagedBeans.observacions}" autocomplete="off"/>
+						
+		        	</h:panelGrid>
+	
+					<p:commandButton id="submit" actionListener="#{paquetManagedBeans.insertar}" 
+								action="paquets" value="Guardar" validateClient="true" ajax="false" update="grid"/>
+	
+		        </p:panel>
+	
+				<br/>
+
+			</h:form>
 	    </h:body>
 	</f:view>
 </html>
