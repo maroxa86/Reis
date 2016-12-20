@@ -12,4 +12,10 @@ public interface PaquetBO {
 	
 	List<Paquet> getLlistatPaquetsFinal();
 
+	void salvar(Paquet paquet);
+
+	Paquet getPaquetById(String idPaquet);
+
+	void borrar(Integer idPaquet);
+
 }

@@ -8,10 +8,10 @@
 		</h:head>
 	    <h:body>
 	        <h:form>
-		        <p:panel header="Nou Paquet">
+		        <p:panel header="Modificar Paquet">
 		        	
 		        	<h:panelGrid id="grid" columns="3" cellpadding="5">
-		        	
+						
 		        		<h:outputLabel for="nom" value="Nom i Cognoms:"/>
 						<p:inputText id="nom" value="#{paquetManagedBeans.nom}" autocomplete="off" required="true" label="nom"
 							requiredMessage="S'ha d'indicar el nom i cognoms"/>
@@ -44,11 +44,12 @@
 
 						<h:outputLabel for="observacions" value="Observacions:" />
 						<p:inputText id="observacions" value="#{paquetManagedBeans.observacions}" autocomplete="off"/>
-						
+
+						<h:inputHidden id="idPaquet" value="#{paquetManagedBeans.id}" />
 		        	</h:panelGrid>
 	
-					<p:commandButton id="submit" actionListener="#{paquetManagedBeans.insertar}" 
-								action="paquets" value="Guardar" validateClient="true" ajax="false" update="grid"/>
+					<p:commandButton id="submit" actionListener="#{paquetManagedBeans.salvar}" 
+								action="llistatPaquets" value="Salvar" validateClient="true" ajax="false" update="grid"/>
 	
 		        </p:panel>
 	

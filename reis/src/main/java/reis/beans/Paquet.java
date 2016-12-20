@@ -32,8 +32,13 @@ public class Paquet implements Serializable{
 	@JoinColumn(name="idTamanyPaquet")
 	private Preu preu;
 
-	public Paquet() {
+	public Paquet(){
 		super();
+	}
+	
+	public Paquet(Integer idPaquet) {
+		super();
+		this.idPaquet = idPaquet;
 	}
 
 	public Paquet(Integer idPaquet, Integer portal, String nom, Integer telefon, String observacions,

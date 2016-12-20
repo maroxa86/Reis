@@ -16,11 +16,6 @@ public class PaquetBOImpl implements PaquetBO {
 
 	private PaquetDAO paquetDAO;
 	
-	@Override
-	public void insertar(Paquet paquet) {
-		paquetDAO.insertar(paquet);
-	}
-
 	public PaquetDAO getPaquetDAO() {
 		return paquetDAO;
 	}
@@ -39,5 +34,25 @@ public class PaquetBOImpl implements PaquetBO {
 	public List<Paquet> getLlistatPaquetsFinal() {
 		return paquetDAO.llistatFinal();
 	}
+	
+	@Override
+	public void insertar(Paquet paquet) {
+		paquetDAO.insertar(paquet);
+	}
+	
+	@Override
+	public void salvar(Paquet paquet) {
+		paquetDAO.salvar(paquet);
+	}
 
+	@Override
+	public Paquet getPaquetById(String idPaquet) {
+		return paquetDAO.buscarPorClave(Integer.valueOf(idPaquet));
+	}
+
+	@Override
+	public void borrar(Integer idPaquet) {
+		paquetDAO.borrar(new Paquet(idPaquet));
+	}
+	
 }

@@ -6,9 +6,9 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 import org.primefaces.context.RequestContext;
@@ -23,11 +23,12 @@ import reis.bo.PreuBO;
 import reis.bo.TramBO;
 
 @ManagedBean(name="paquetManagedBeans")
-@ViewScoped
+@ApplicationScoped
 public class PaquetManagedBean implements Serializable{
 
 	private static final long serialVersionUID = 6930584197140836692L;
 
+	private String id;
 	private String nom;
 	private String carrer;
 	private String telefon;
@@ -38,8 +39,6 @@ public class PaquetManagedBean implements Serializable{
 	private String idTamanyPreu;
 	private List<SelectItem> llistatCarrersCombo;
 	private List<SelectItem> llistatPreuCombo;
-	
-	
 	
 	@ManagedProperty("#{paquetBO}")
 	private PaquetBO paquetBO;
@@ -81,25 +80,79 @@ public class PaquetManagedBean implements Serializable{
 
 	public void insertar(){
 		if(carrer != null && idTamanyPreu != null){
-			Paquet paquet = new Paquet();
-			paquet.setNom(nom);
-			paquet.setObservacions(observacions);
-			paquet.setPortal(Integer.parseInt(portal));
-			paquet.setTelefon(Integer.parseInt(telefon));
-			Preu preu = preuBO.getPreuById(Integer.parseInt(idTamanyPreu));
-			paquet.setPreu(preu);
-			
 			int idTram = tramBO.getTramByCarrerAndPortal(Integer.parseInt(carrer), Integer.parseInt(portal));
-			
-			paquet.setTram(new Tram(idTram));
-			
-			paquetBO.insertar(paquet);
-			
-			String missatge = "El tram del paquet es: " + paquet.getTram().getIdTram() + "<br/>El numero de paquet es el: " + paquet.getIdPaquet() + "<br/>El preu del paquet es: " + paquet.getPreu().getPreu() +" euros";
-			
-			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Paquet Guardat", missatge);
-	        
-	        RequestContext.getCurrentInstance().showMessageInDialog(message);
+			if(idTram > 0){
+				Paquet paquet = new Paquet();
+				paquet.setNom(nom);
+				paquet.setObservacions(observacions);
+				paquet.setPortal(Integer.parseInt(portal));
+				paquet.setTelefon(Integer.parseInt(telefon));
+				Preu preu = preuBO.getPreuById(Integer.parseInt(idTamanyPreu));
+				paquet.setPreu(preu);
+				
+				
+				paquet.setTram(new Tram(idTram));
+				
+				paquetBO.insertar(paquet);
+				
+				id = "";
+				nom = "";
+				carrer = "";
+				telefon = "";
+				portal = "";
+				observacions = "";
+				this.paquet = "";
+				tram = "";
+				idTamanyPreu = "";
+				
+				String missatge = "El tram del paquet es: " + paquet.getTram().getIdTram() + "<br/>El numero de paquet es el: " + paquet.getIdPaquet() + "<br/>El preu del paquet es: " + paquet.getPreu().getPreu() +" euros";
+				
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Paquet Guardat", missatge);
+		        
+		        RequestContext.getCurrentInstance().showMessageInDialog(message);
+			}
+			else{
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR FALTA INFORMACIÓ",
+						"NO EXISTEIX EL NUMERO DE PORTAL EN AQUEST CARRER");
+				RequestContext.getCurrentInstance().showMessageInDialog(message);
+			}
+		}
+		else{
+			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR FALTA INFORMACIÓ",
+					"NO S'HA INDICAT EL CARRER O EL TAMANY DEL PAQUET");
+			RequestContext.getCurrentInstance().showMessageInDialog(message); 
+		}
+	}
+
+	public void salvar(){
+		if(carrer != null && idTamanyPreu != null){
+			int idTram = tramBO.getTramByCarrerAndPortal(Integer.parseInt(carrer), Integer.parseInt(portal));
+			if(idTram > 0){
+				
+				Paquet paquet = new Paquet();
+				paquet.setIdPaquet(Integer.valueOf(id));
+				paquet.setNom(nom);
+				paquet.setObservacions(observacions);
+				paquet.setPortal(Integer.parseInt(portal));
+				paquet.setTelefon(Integer.parseInt(telefon));
+				Preu preu = preuBO.getPreuById(Integer.parseInt(idTamanyPreu));
+				paquet.setPreu(preu);
+				
+				paquet.setTram(new Tram(idTram));
+
+				paquetBO.salvar(paquet);
+
+				String missatge = "El tram del paquet es: " + paquet.getTram().getIdTram() + "<br/>El numero de paquet es el: " + paquet.getIdPaquet() + "<br/>El preu del paquet es: " + paquet.getPreu().getPreu() +" euros";
+				
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Paquet Guardat", missatge);
+		        
+		        RequestContext.getCurrentInstance().showMessageInDialog(message);
+			}
+			else{
+				FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR FALTA INFORMACIÓ",
+						"NO EXISTEIX EL NUMERO DE PORTAL EN AQUEST CARRER");
+				RequestContext.getCurrentInstance().showMessageInDialog(message);
+			}
 		}
 		else{
 			FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR FALTA INFORMACIÓ",
@@ -108,6 +161,25 @@ public class PaquetManagedBean implements Serializable{
 		}
 	}
 	
+	public void editar(String idPaquet){
+		Paquet paquet = paquetBO.getPaquetById(idPaquet);
+		id = paquet.getIdPaquet().toString();
+		nom = paquet.getNom();
+		carrer = paquet.getTram().getCarrer().getIdCarrer().toString();
+		telefon = paquet.getTelefon().toString();
+		portal = paquet.getPortal().toString();
+		observacions = paquet.getObservacions();
+		idTamanyPreu = paquet.getPreu().getIdTamanyPaquet().toString();
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getNom() {
 		return nom;
 	}

@@ -1,5 +1,6 @@
 package reis.dao.impl;
 
+import javax.persistence.NoResultException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -31,8 +32,13 @@ public class TramDAOImpl extends AbstractGenericDAOImpl<Tram, Integer> implement
 					builder.equal(tramRoot.get("carrer"), idCarrer)));
 		}
 		
-		Tram tram = getManager().createQuery(criteria).getSingleResult();
-		return tram.getIdTram();
+		try{
+			Tram tram = getManager().createQuery(criteria).getSingleResult();
+			return tram.getIdTram();
+		}
+		catch(NoResultException e){
+			return 0;
+		}
 	}
 
 }
