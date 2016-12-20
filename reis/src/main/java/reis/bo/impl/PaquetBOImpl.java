@@ -27,7 +27,7 @@ public class PaquetBOImpl implements PaquetBO {
 
 	@Override
 	public List<Paquet> carregarPaquets() {
-		return paquetDAO.buscarTodos();
+		return paquetDAO.llistatSenseValidar();
 	}
 
 	@Override
@@ -53,6 +53,12 @@ public class PaquetBOImpl implements PaquetBO {
 	@Override
 	public void borrar(Integer idPaquet) {
 		paquetDAO.borrar(new Paquet(idPaquet));
+	}
+
+	@Override
+	public void validarPaquet(Paquet paquet) {
+		paquet.setValidat(true);
+		paquetDAO.salvar(paquet);
 	}
 	
 }

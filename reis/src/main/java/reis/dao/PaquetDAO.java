@@ -6,4 +6,6 @@ import reis.beans.Paquet;
 
 public interface PaquetDAO extends GenericDAO<Paquet, Integer>{
 	List<Paquet> llistatFinal();
+	
+	List<Paquet> llistatSenseValidar();
 }

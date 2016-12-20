@@ -18,4 +18,6 @@ public interface PaquetBO {
 
 	void borrar(Integer idPaquet);
 
+	void validarPaquet(Paquet paquet);
+
 }

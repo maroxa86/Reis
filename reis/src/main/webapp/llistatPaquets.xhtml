@@ -26,11 +26,11 @@
 				</p:column>
 				
 				<p:column headerText="Validat">
-	    			<h:outputText value="Pendent de validar" />
+	    			<p:commandButton id="validar" actionListener="#{paquetManagedBeans.validar(paquet.idPaquet)}" action="llistatPaquets" icon="fa-check" />
 				</p:column>
 				
 				<p:column>
-	    			<p:commandButton id="salvar" actionListener="#{paquetManagedBeans.editar(paquet.idPaquet)}" action="editarPaquets" icon="fa fa-pencil" />
+	    			<p:commandButton id="editar" actionListener="#{paquetManagedBeans.editar(paquet.idPaquet)}" action="editarPaquets" icon="fa fa-pencil" />
 				</p:column>
 				
 				<p:column style="width:32px;text-align: center">
@@ -67,8 +67,8 @@
 		    </p:dialog>
 		    
 		    <h:commandLink>
-				<p:graphicImage name="/demo/images/csv.png" />
-				<p:dataExporter type="xls" target="tabla" fileName="paquets" pageOnly="true" />
+				<p:graphicImage library="img" name="excel.png"/>
+				<p:dataExporter type="xls" target="tabla" fileName="paquets" postProcessor="#{llistatPaquetsManagedBeans.export}" />
 			</h:commandLink>
 			
 	    </h:form>

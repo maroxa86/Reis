@@ -1,5 +1,6 @@
 package reis.managedBeans;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +10,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.HttpServletRequest;
 
 import org.primefaces.context.RequestContext;
 
@@ -170,6 +174,15 @@ public class PaquetManagedBean implements Serializable{
 		portal = paquet.getPortal().toString();
 		observacions = paquet.getObservacions();
 		idTamanyPreu = paquet.getPreu().getIdTamanyPaquet().toString();
+	}
+	
+	public void validar(String idPaquet) throws IOException{
+		Paquet paquet = paquetBO.getPaquetById(idPaquet);
+		
+		paquetBO.validarPaquet(paquet);
+		
+		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+	    ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
 	}
 	
 	public String getId() {

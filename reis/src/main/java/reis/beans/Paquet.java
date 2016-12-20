@@ -2,6 +2,7 @@ package reis.beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name="paquet")
@@ -23,6 +26,10 @@ public class Paquet implements Serializable{
 	private String nom;
 	private Integer telefon;
 	private String observacions;
+	
+	@Column(nullable = false)
+	@Type(type = "org.hibernate.type.NumericBooleanType")
+	private boolean validat;
 	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="idTram")
@@ -42,7 +49,7 @@ public class Paquet implements Serializable{
 	}
 
 	public Paquet(Integer idPaquet, Integer portal, String nom, Integer telefon, String observacions,
-			Tram tram, Preu preu) {
+			Tram tram, Preu preu, boolean validat) {
 		super();
 		this.idPaquet = idPaquet;
 		this.portal = portal;
@@ -51,9 +58,8 @@ public class Paquet implements Serializable{
 		this.observacions = observacions;
 		this.tram = tram;
 		this.preu = preu;
+		this.validat = validat;
 	}
-
-
 
 	public Integer getIdPaquet() {
 		return idPaquet;
@@ -109,6 +115,14 @@ public class Paquet implements Serializable{
 
 	public void setTram(Tram tram) {
 		this.tram = tram;
+	}
+
+	public boolean isValidat() {
+		return validat;
+	}
+
+	public void setValidat(boolean validat) {
+		this.validat = validat;
 	}
 	
 }

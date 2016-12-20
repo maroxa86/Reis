@@ -67,8 +67,8 @@
 		    </p:dialog>
 		    
 		    <h:commandLink>
-				<p:graphicImage name="/demo/images/csv.png" />
-				<p:dataExporter type="xls" target="tabla" fileName="paquets" pageOnly="true" />
+				<p:graphicImage library="img" name="excel.png"/>
+				<p:dataExporter type="xls" target="tabla" fileName="paquets" postProcessor="#{llistatFinalPaquetsManagedBeans.export}" />
 			</h:commandLink>
 			
 	    </h:form>
