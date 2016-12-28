@@ -176,6 +176,12 @@ public class PaquetManagedBean implements Serializable{
 		idTamanyPreu = paquet.getPreu().getIdTamanyPaquet().toString();
 	}
 	
+	public void borrar(String idPaquet){
+		Paquet paquet = paquetBO.getPaquetById(idPaquet);
+		
+		paquetBO.borrarPaquet(paquet);
+	}
+	
 	public void validar(String idPaquet) throws IOException{
 		Paquet paquet = paquetBO.getPaquetById(idPaquet);
 		

@@ -61,5 +61,11 @@ public class PaquetBOImpl implements PaquetBO {
 		paquet.setValidat(true);
 		paquetDAO.salvar(paquet);
 	}
+
+	@Override
+	public void borrarPaquet(Paquet paquet) {
+		paquet.setActiu(false);
+		paquetDAO.salvar(paquet);
+	}
 	
 }

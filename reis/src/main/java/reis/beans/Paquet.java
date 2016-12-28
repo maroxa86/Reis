@@ -29,6 +29,10 @@ public class Paquet implements Serializable{
 	
 	@Column(nullable = false)
 	@Type(type = "org.hibernate.type.NumericBooleanType")
+	private boolean actiu;
+	
+	@Column(nullable = false)
+	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private boolean validat;
 	
 	@OneToOne(fetch = FetchType.EAGER)
@@ -49,7 +53,7 @@ public class Paquet implements Serializable{
 	}
 
 	public Paquet(Integer idPaquet, Integer portal, String nom, Integer telefon, String observacions,
-			Tram tram, Preu preu, boolean validat) {
+			Tram tram, Preu preu, boolean validat, boolean actiu) {
 		super();
 		this.idPaquet = idPaquet;
 		this.portal = portal;
@@ -59,6 +63,7 @@ public class Paquet implements Serializable{
 		this.tram = tram;
 		this.preu = preu;
 		this.validat = validat;
+		this.actiu = actiu;
 	}
 
 	public Integer getIdPaquet() {
@@ -123,6 +128,14 @@ public class Paquet implements Serializable{
 
 	public void setValidat(boolean validat) {
 		this.validat = validat;
+	}
+
+	public boolean isActiu() {
+		return actiu;
+	}
+
+	public void setActiu(boolean actiu) {
+		this.actiu = actiu;
 	}
 	
 }

@@ -39,6 +39,7 @@ CREATE TABLE reis.paquet (
 	observacions VARCHAR(2000) NULL,
 	idTram INT(11) NOT NULL,
 	idTamanyPaquet INT(11) NOT NULL,
+	actiu TINYINT(1) NOT NULL DEFAULT '1',
 	validat TINYINT(1) NOT NULL DEFAULT '0',
 	PRIMARY KEY (idPaquet),
 	INDEX tram_paquet_fk_idx (idTram ASC),

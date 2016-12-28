@@ -20,4 +20,6 @@ public interface PaquetBO {
 
 	void validarPaquet(Paquet paquet);
 
+	void borrarPaquet(Paquet paquet);
+
 }

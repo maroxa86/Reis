@@ -70,6 +70,9 @@ public class LlistatPaquetsManagedBeans {
     	
         cellCab = rowCab.createCell(9);
         cellCab.setCellValue("Preu");
+        
+        cellCab = rowCab.createCell(10);
+        cellCab.setCellValue("Observacions");
 
         int fila = 1;
 
@@ -105,6 +108,9 @@ public class LlistatPaquetsManagedBeans {
         	
         	cell = row.createCell(9);
         	cell.setCellValue(paquet.getPreu().getPreu());
+        	
+        	cell = row.createCell(10);
+        	cell.setCellValue(paquet.getObservacions());
         	
         	fila++;
         }

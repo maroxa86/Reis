@@ -30,11 +30,15 @@
 				</p:column>
 				
 				<p:column headerText="Validat">
-	    			<p:commandButton id="validar" actionListener="#{paquetManagedBeans.validar(paquet.idPaquet)}" action="llistatPaquets" icon="fa-check" />
+	    			<p:commandButton id="validar" actionListener="#{paquetManagedBeans.validar(paquet.idPaquet)}" action="llistatPaquets" icon="fa fa-check" />
 				</p:column>
 				
 				<p:column>
 	    			<p:commandButton id="editar" actionListener="#{paquetManagedBeans.editar(paquet.idPaquet)}" action="editarPaquets" icon="fa fa-pencil" />
+				</p:column>
+				
+				<p:column>
+	    			<p:commandButton id="borrar" actionListener="#{paquetManagedBeans.borrar(paquet.idPaquet)}" action="llistatPaquets" icon="fa fa-remove" />
 				</p:column>
 				
 				<p:column style="width:32px;text-align: center">

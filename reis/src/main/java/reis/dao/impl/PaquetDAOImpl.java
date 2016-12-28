@@ -34,7 +34,7 @@ public class PaquetDAOImpl extends AbstractGenericDAOImpl<Paquet, Integer> imple
 		Root<Paquet> paquetRoot = criteria.from(Paquet.class);
 		criteria.select(paquetRoot);
 		criteria.where(builder.isFalse(paquetRoot.get("validat")));
-		criteria.orderBy(builder.asc(paquetRoot.get("tram")));
+		criteria.orderBy(builder.asc(paquetRoot.get("idPaquet")));
 		List<Paquet> listadoPaquets = getManager().createQuery(criteria).getResultList();
 		
 		return listadoPaquets;
