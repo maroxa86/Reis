@@ -25,6 +25,10 @@
 	    			<h:outputText value="#{paquet.tram.idTram}" />
 				</p:column>
 				
+				<p:column headerText="Sentit">
+	    			<h:outputText value="#{paquet.tram.sentit}" />
+				</p:column>
+				
 				<p:column headerText="Validat">
 	    			<p:commandButton id="validar" actionListener="#{paquetManagedBeans.validar(paquet.idPaquet)}" action="llistatPaquets" icon="fa-check" />
 				</p:column>

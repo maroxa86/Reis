@@ -39,6 +39,7 @@ CREATE TABLE reis.paquet (
 	observacions VARCHAR(2000) NULL,
 	idTram INT(11) NOT NULL,
 	idTamanyPaquet INT(11) NOT NULL,
+	validat TINYINT(1) NOT NULL DEFAULT '0',
 	PRIMARY KEY (idPaquet),
 	INDEX tram_paquet_fk_idx (idTram ASC),
 	INDEX preu_paquet_fk_idx (idTamanyPaquet ASC),
@@ -363,12 +364,12 @@ INSERT INTO reis.tram (idtram,nomTram,sMin,sMax,pMin,pMax,idCarrer) VALUES (178,
 INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (1,'Castell',1,99,2,100,84,0);
 INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (2,'Castell',1,19,2,16,65,1);
 INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (3,'Castell',1,17,2,16,121,1);
-INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (4,'Castell',1,13,2,24,103,0);
-INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (5,'Castell',1,29,2,30,61,1);
-INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (6,'Castell',1,23,2,18,19,0);
-INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (7,'Castell',1,19,2,24,108,1);
-INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (8,'Castell',1,49,2,50,54,1);
-INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (9,'Castell',1,7,2,18,73,0);
+INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (4,'Castell',1,7,2,18,73,0);
+INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (5,'Castell',1,13,2,24,103,0);
+INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (6,'Castell',1,29,2,30,61,1);
+INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (7,'Castell',1,23,2,18,19,0);
+INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (8,'Castell',1,19,2,24,108,1);
+INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (9,'Castell',1,49,2,50,54,1);
 INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (10,'Castell',1,99,2,100,12,0);
 INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (11,'Castell',1,19,2,30,95,1);
 INSERT INTO reis.tram (idTram,nomTram,sMin,sMax,PMin,PMax,idCarrer,sentit) VALUES (12,'Castell',1,39,2,18,110,1);

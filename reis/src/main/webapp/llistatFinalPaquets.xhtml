@@ -25,6 +25,10 @@
 	    			<h:outputText value="#{paquet.tram.idTram}" />
 				</p:column>
 				
+				<p:column headerText="Sentit">
+	    			<h:outputText value="#{paquet.tram.sentit}" />
+				</p:column>
+				
 				<p:column style="width:32px;text-align: center">
 	            	<p:commandButton update=":form:paquetDetall" oncomplete="PF('paquetDialog').show()" icon="ui-icon-search" title="View">
 	               		<f:setPropertyActionListener value="#{paquet}" target="#{llistatFinalPaquetsManagedBeans.paquetSeleccionat}" />
